@@ -27,6 +27,9 @@
 # combining output path
 # string OUTPUT_FILE_PATH p "%s/%s/%s" ARCHIVE_NAME DIRECTORY_NAME FILE_NAME
 
+# get archive size
+get ARCHIVE_SIZE asize
+
 # reversing string 
 # string DIRECTORY_NAME r DIRECTORY_NAME
 # string FILE_NAME r FILE_NAME
@@ -44,6 +47,9 @@
 
 # go to 0 offset in memory file1 (absolute offset)
 # goto 0 -1 SEEK_SET
+
+# remove spaces (trim)
+# string FILE_NAME R " " ""   
 
 # string append
 # set FILE_COUNT long 0

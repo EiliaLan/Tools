@@ -1,0 +1,38 @@
+# Script by Bartlomiej Duda (Ikskoks)
+# NERD Engine (PC) NPK/VPK script
+
+# Should work with following games:
+# - Gunmetal Arcadia
+# - Gunmetal Arcadia Zero
+# - Super Win the Game
+# - You Have to Win the Game
+
+
+# Ver    Date        Author               Comment
+# v1.0   26.08.2025  Bartlomiej Duda      -
+# v1.1   27.08.2025  Bartlomiej Duda      Support for other signature
+
+
+GetDString SIGNATURE 4
+if SIGNATURE != ".npk" && SIGNATURE != "npk."
+	print "Not valid NERD engine archive! Exiting!"
+	cleanexit
+endif
+
+if SIGNATURE == ".npk"
+	get FORMAT_VERSION long
+endif
+
+
+get INDEX_OFFSET long
+get INDEX_SIZE long
+xmath NUMBER_OF_FILES "INDEX_SIZE / 256"
+goto INDEX_OFFSET
+
+
+for i = 0 < NUMBER_OF_FILES
+	GetDString FILE_NAME 248
+	get FILE_OFFSET long
+	get FILE_SIZE long
+	log FILE_NAME FILE_OFFSET FILE_SIZE
+next i
